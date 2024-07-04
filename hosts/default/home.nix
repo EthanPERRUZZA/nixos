@@ -99,7 +99,6 @@
         "$mod SHIFT, Q, killactive, "
         "$mod , Return, exec, $terminal"
         "$mod SHIFT, F, exec, firefox"
-        "$mod, F, exec, firefox"
         "ALT, Space, exec, pkill $menu || $menu --show drun"
         "$mod, V, togglefloating,"
 
@@ -134,5 +133,29 @@
           )
           10)
       );
+    
+    # Bind and repeat on hold
+    binde =
+      [
+        # Example volume button that allows press and hold, volume limited to 150%
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      ];
+
+    bindl = 
+      [
+        # Example volume button that allows press and hold, volume limited to 150%
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      ];
+    
+    exec-once = ''
+      ${pkgs.waybar}/bin/waybar &
+    '';
+
+    #general = with config.colorScheme.colors; {
+    #  "col.active_boder" = "rgba(${base0E}ff) rgba(${base09}ff) 60deg";
+    #  "col.inactive_border" = "rgba(${base00}ff)";
+    #};
   };
 }
