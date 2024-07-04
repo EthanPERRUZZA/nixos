@@ -140,7 +140,7 @@
   ];
   
   environment.sessionVariables = {
-    FLAKE = "/etc/nixos/#default";
+    FLAKE = "/etc/nixos/";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
