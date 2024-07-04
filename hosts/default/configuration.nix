@@ -125,6 +125,8 @@
   environment.systemPackages = with pkgs; [
     home-manager
     nh
+    nix-output-monitor
+    nvd
 
     tree
     wget
