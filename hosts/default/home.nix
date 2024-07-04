@@ -1,8 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
-  #imports = [ ./hypr.nix ]; 
-
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "ethanp";
@@ -19,11 +17,15 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
     
+    kitty
+    dolphin
+    wofi
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -76,5 +78,61 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-}
+  programs.git = {
+    enable = true;
+    userName = "Ethan Perruzza";
+    userEmail = "ethan.perruzza@epita.fr";
+  };
 
+  # Alternative storage for hyprland config file.
+  #xdg.configFile."hypr/hyprland.conf".source = "./hypr/hyprland.conf";
+  # Hyprland
+  wayland.windowManager.hyprland.enable = true;
+  wayland.windowManager.hyprland.settings = {
+    "$terminal" = "kitty";
+    "$fileManager" = "dolphin";
+    "$menu" = "wofi";
+
+    "$mod" = "SUPER";
+    bind =
+      [
+        "$mod SHIFT, Q, killactive, "
+        "$mod , Return, exec, $terminal"
+        "$mod SHIFT, F, exec, firefox"
+        "$mod, F, exec, firefox"
+        "ALT, Space, exec, pkill $menu || $menu --show drun"
+        "$mod, V, togglefloating,"
+
+	# Move focus with mainMod + arrow keys
+	"$mod, left, movefocus, l"
+        "$mod, H, movefocus, l"
+        "$mod, right, movefocus, r"
+        "$mod, L, movefocus, r"
+        "$mod, up, movefocus, u"
+        "$mod, J, movefocus, u"
+        "$mod, down, movefocus, d"
+        "$mod, K, movefocus, d"
+
+	# Example special workspace (scratchpad)
+        "$mod, S, togglespecialworkspace, magic"
+        "$mod SHIFT, S, movetoworkspace, special:magic"
+        #", Print, exec, grimblast copy area"
+      ]
+      ++ (
+        # workspaces
+        # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+        builtins.concatLists (builtins.genList (
+            x: let
+              ws = let
+                c = (x + 1) / 10;
+              in
+                builtins.toString (x + 1 - (c * 10));
+            in [
+              "$mod, ${ws}, workspace, ${toString (x + 1)}"
+              "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+            ]
+          )
+          10)
+      );
+  };
+}
