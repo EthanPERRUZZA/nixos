@@ -114,7 +114,7 @@
 
 	# Example special workspace (scratchpad)
         "$mod, S, togglespecialworkspace, magic"
-        "$mod SHIFT, S, movetoworkspace, special:magic"
+        "$mod SHIFT, S, movetoworkspacesilent, special:magic"
         #", Print, exec, grimblast copy area"
       ]
       ++ (
@@ -128,27 +128,21 @@
                 builtins.toString (x + 1 - (c * 10));
             in [
               "$mod, ${ws}, workspace, ${toString (x + 1)}"
-              "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+              "$mod SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
             ]
           )
           10)
       );
     
-    # Bind and repeat on hold
-    binde =
+    # Bind and repeat on hold (e) & on locked screen (l)
+    bindel =
       [
-        # Example volume button that allows press and hold, volume limited to 150%
+        # Sound Control.
         ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ];
 
-    bindl = 
-      [
-        # Example volume button that allows press and hold, volume limited to 150%
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-      ];
-    
     exec-once = ''
       ${pkgs.waybar}/bin/waybar &
     '';
