@@ -1,6 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
+  imports = [
+    ./../../homeManagerModules/default.nix
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "ethanp";
@@ -75,12 +79,6 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  programs.git = {
-    enable = true;
-    userName = "Ethan Perruzza";
-    userEmail = "ethan.perruzza@epita.fr";
-  };
 
   # Alternative storage for hyprland config file.
   #xdg.configFile."hypr/hyprland.conf".source = "./hypr/hyprland.conf";
