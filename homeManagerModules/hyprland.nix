@@ -66,9 +66,67 @@
       ${pkgs.waybar}/bin/waybar &
     '';
 
+    misc = {
+      "force_default_wallpaper" = "0"; # Disable anime mascot hyprland wallpappers
+    };
+    
     #general = with config.colorScheme.colors; {
-    #  "col.active_boder" = "rgba(${base0E}ff) rgba(${base09}ff) 60deg";
-    #  "col.inactive_border" = "rgba(${base00}ff)";
-    #};
+    general = {
+      "gaps_in" = "5";
+      "gaps_out" = "10";
+      "border_size" = "2";
+
+      "resize_on_border" = "true";
+
+      "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+      "col.inactive_border" = "rgba(595959aa)";
+
+      # Game display performances
+      "allow_tearing" = "true";
+    };
+
+    decoration = {
+        "rounding" = "10";
+
+        # Change transparency of focused and unfocused windows
+        "active_opacity" = "0.95";
+        "inactive_opacity" = "0.8";
+        "fullscreen_opacity" = "1.0";
+
+        "drop_shadow" = "true";
+        "shadow_range" = "4";
+        "shadow_render_power" = "3";
+        "col.shadow" = "rgba(1a1a1aee)";
+
+        # https://wiki.hyprland.org/Configuring/Variables/#blur
+        blur = {
+            "enabled" = "true";
+            "size" = "3";
+            "passes" = "1";
+            
+            "vibrancy" = "0.1696";
+        };
+    };
+
+    input = {
+        "kb_layout" = "us";
+        "kb_variant" = "altgr-intl";
+        "kb_model" = "";
+        "kb_options" = "";
+        "kb_rules" = "";
+    
+        "follow_mouse" = "1";
+    
+        "sensitivity" = "0"; # -1.0 - 1.0, 0 means no modification.
+    
+        touchpad = {
+            "natural_scroll" = "false";
+        };
+    };
+
+    gestures = {
+      "workspace_swipe" = "true";
+      "workspace_swipe_fingers" = "3";
+    };
   };
 }

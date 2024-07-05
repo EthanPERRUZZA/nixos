@@ -29,6 +29,7 @@
     dolphin
     wofi
     brightnessctl
+    hyprlock
 
     google-chrome
 
