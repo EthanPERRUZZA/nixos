@@ -16,6 +16,7 @@
         "$mod SHIFT, Q, killactive, "
         "$mod , Return, exec, $terminal"
         "$mod SHIFT, F, exec, firefox"
+        "$mod CTRL, L, exec, hyprlock"
         "ALT, Space, exec, pkill $menu || $menu --show drun"
         "$mod, V, togglefloating,"
 
@@ -128,5 +129,7 @@
       "workspace_swipe" = "true";
       "workspace_swipe_fingers" = "3";
     };
+
+    monitor = "eDP-1,2560x1440,0x0,1";
   };
 }
