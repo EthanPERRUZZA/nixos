@@ -35,6 +35,13 @@
     beeper # messagerie
     discord
     neovim
+    pdfarranger
+    kdePackages.gwenview
+    kdePackages.kdenlive
+    kdePackages.kgeography
+    super-productivity
+    inkscape
+    gimp
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
