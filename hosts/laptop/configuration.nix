@@ -166,6 +166,7 @@
     tree
     wget
     curl
+    unzip
 
     tldr
     bat
@@ -179,6 +180,7 @@
   environment.sessionVariables = {
     FLAKE = "/etc/nixos/";
     NIXOS_OZONE_WL = "1";
+    QT_QPA_PLATFORM = "wayland";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
