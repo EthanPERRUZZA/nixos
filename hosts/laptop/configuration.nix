@@ -156,7 +156,13 @@
   programs.firefox.enable = true;
 
   # Apply zsh.
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    ohMyZsh = {
+       enable = true;
+       theme = "robbyrussell";
+    };
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

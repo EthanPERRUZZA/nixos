@@ -9,6 +9,21 @@
 
     shellAliases = {
       ll = "ls -l";
+
+      gs = "git status";
+      ga = "git add";
+      gaa = "git add .";
+      gc = "git commit -m";
+      gt = "git tag -ma";
+      gp = "git push";
+      gpt = "git push --follow-tags";
+      gpl = "git pull";
+      gl = "git log";
+      glol = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'";
+
+      h = "history";
+
+      prolo = "cd ~/Documents/Prologin";
     };
 
     history = {
@@ -19,16 +34,12 @@
     zplug = {
       enable = true;
       plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
-        { name = "zsh-users/zsh-history-substring-search"; } # Simple plugin installation
         { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
       ];
     };
 
     initExtra = ''
 source /etc/nixos/dotfiles/p10k.zsh
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
     '';
   };
 }
