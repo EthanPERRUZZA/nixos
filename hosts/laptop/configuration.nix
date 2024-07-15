@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../nixosModules/stylix.nix
       inputs.home-manager.nixosModules.default
     ];
   
@@ -80,7 +81,7 @@
     #media-session.enable = true;
   };
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.modesetting.enable = true;
