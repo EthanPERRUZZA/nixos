@@ -47,7 +47,7 @@
     direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
-    anaconda                # conda environment (https://conda.io/)
+    # anaconda                # conda environment (https://conda.io/)
     pyenv                   # python environment (https://github.com/pyenv/pyenv)
     goenv                   # go environment (https://github.com/syndbg/goenv)
     nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
@@ -82,23 +82,23 @@
     toolbox                 # toolbox name (https://github.com/containers/toolbox)
     context                 # user@hostname
     nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
-    ranger                  # ranger shell (https://github.com/ranger/ranger)
-    yazi                    # yazi shell (https://github.com/sxyazi/yazi)
-    nnn                     # nnn shell (https://github.com/jarun/nnn)
-    lf                      # lf shell (https://github.com/gokcehan/lf)
-    xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
+    # ranger                  # ranger shell (https://github.com/ranger/ranger)
+    # yazi                    # yazi shell (https://github.com/sxyazi/yazi)
+    # nnn                     # nnn shell (https://github.com/jarun/nnn)
+    # lf                      # lf shell (https://github.com/gokcehan/lf)
+    # xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
     vim_shell               # vim shell indicator (:sh)
     midnight_commander      # midnight commander shell (https://midnight-commander.org/)
     nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
-    chezmoi_shell           # chezmoi shell (https://www.chezmoi.io/)
+    # chezmoi_shell           # chezmoi shell (https://www.chezmoi.io/)
     # vpn_ip                # virtual private network indicator
     # load                  # CPU load
     # disk_usage            # disk usage
     # ram                   # free RAM
     # swap                  # used swap
-    todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
-    timewarrior             # timewarrior tracking status (https://timewarrior.net/)
-    taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
+    # todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
+    # timewarrior             # timewarrior tracking status (https://timewarrior.net/)
+    # taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     per_directory_history   # Oh My Zsh per-directory-history local/global indicator
     # cpu_arch              # CPU architecture
     time                    # current time
@@ -1698,7 +1698,7 @@
   # For example, you can type POWERLEVEL9K_BACKGROUND=red and see your prompt turn red. Hot reload
   # can slow down prompt by 1-2 milliseconds, so it's better to keep it turned off unless you
   # really need it.
-  typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=true
+  typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=false
 
   # If p10k is already loaded, reload configuration.
   # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.

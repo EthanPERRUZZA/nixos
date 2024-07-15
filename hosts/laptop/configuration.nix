@@ -132,6 +132,8 @@
     ];
   };
 
+  users.defaultUserShell = pkgs.zsh;
+
   home-manager = {
     # also pass inputs to home-manager modules
     extraSpecialArgs = { inherit inputs; };
@@ -152,6 +154,9 @@
 
   # Install firefox.
   programs.firefox.enable = true;
+
+  # Apply zsh.
+  programs.zsh.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -177,6 +182,8 @@
     alacritty
     vim
   ];
+
+  environment.shells = with pkgs; [ zsh ];
   
   environment.sessionVariables = {
     FLAKE = "/etc/nixos/";

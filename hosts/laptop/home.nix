@@ -26,7 +26,6 @@
   # environment.
   home.packages = with pkgs; [
 
-    kitty
     wofi
     brightnessctl
     hyprlock
