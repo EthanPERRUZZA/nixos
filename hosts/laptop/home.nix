@@ -4,6 +4,7 @@
   imports = [
     ./../../homeManagerModules/default.nix
     ./../../homeManagerModules/hyprland.nix
+    ./../../homeManagerModules/zsh.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
