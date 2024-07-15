@@ -179,6 +179,7 @@
     wget
     curl
     unzip
+    zip
 
     tldr
     bat
