@@ -45,6 +45,10 @@
 
     python3
     vscode
+    lunarvim
+    lazygit
+    ripgrep
+    fd
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
