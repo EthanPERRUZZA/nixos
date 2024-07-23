@@ -181,6 +181,8 @@
     nix-output-monitor
     nvd
 
+    nwg-displays
+
     ags
     bun
     libdbusmenu-gtk3

@@ -130,6 +130,6 @@
       "workspace_swipe_fingers" = "3";
     };
 
-    monitor = "eDP-1,2560x1440,0x0,1";
+    source = "~/.config/hypr/monitors.conf";
   };
 }
