@@ -5,6 +5,19 @@
   ...
 }:
 {
+  home.packages = with pkgs; [
+    hyprlock
+    hypridle
+  ];
+
+  # ------------------------------------
+  # Hyprlock
+  # ------------------------------------
+  xdg.configFile."hypr/hyprlock.conf".source = ../../dotfiles/hypr/hyprlock.conf;
+
+  # ------------------------------------
+  # Hyprland
+  # ------------------------------------
   # Alternativ storage for hyprland config file.
   #xdg.configFile."hypr/hyprland.conf".source = "./hypr/hyprland.conf";
   # Hyprland
@@ -67,9 +80,10 @@
         ", XF86MonBrightnessUp, exec, brightnessctl set 5%+" 
       ];
 
-    exec-once = ''
-      ags -c /etc/nixos/homeManagerModules/ags/config.js >& /tmp/ags.log &
-    '';
+    exec-once = [
+      "ags -c /etc/nixos/homeManagerModules/ags/config.js >& /tmp/ags.log &"
+      "hypridle &"
+    ];
 
     misc = {
       "force_default_wallpaper" = "0"; # Disable anime mascot hyprland wallpappers

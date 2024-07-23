@@ -3,13 +3,11 @@
 {
   imports = [
     ./../../homeManagerModules/default.nix
-    ./../../homeManagerModules/hyprland.nix
     ./../../homeManagerModules/zsh.nix
+    ./../../homeManagerModules/hypr/default.nix
     ./../../homeManagerModules/ags/default.nix
     inputs.ags.homeManagerModules.default
   ];
-
-  xdg.configFile."hypr/hyprlock.conf".source = ../../dotfiles/hypr/hyprlock.conf;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -32,7 +30,6 @@
 
     wofi
     brightnessctl
-    hyprlock
 
     google-chrome
     beeper # messagerie
