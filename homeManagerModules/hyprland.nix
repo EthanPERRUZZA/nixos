@@ -1,7 +1,11 @@
-{ config, pkgs, inputs, ... }:
-
+{ 
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
-  # Alternative storage for hyprland config file.
+  # Alternativ storage for hyprland config file.
   #xdg.configFile."hypr/hyprland.conf".source = "./hypr/hyprland.conf";
   # Hyprland
   wayland.windowManager.hyprland.enable = true;
@@ -64,7 +68,7 @@
       ];
 
     exec-once = ''
-      ${pkgs.waybar}/bin/waybar &
+      ags -c /etc/nixos/homeManagerModules/ags/config.js >& /tmp/ags.log &
     '';
 
     misc = {

@@ -14,6 +14,9 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     stylix.url = "github:danth/stylix";
+
+    matugen.url = "github:InioX/matugen?ref=v2.2.0";
+    ags.url = "github:Aylur/ags";
   };
 
   outputs = { ... }@inputs: {

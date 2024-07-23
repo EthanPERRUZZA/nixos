@@ -5,6 +5,8 @@
     ./../../homeManagerModules/default.nix
     ./../../homeManagerModules/hyprland.nix
     ./../../homeManagerModules/zsh.nix
+    ./../../homeManagerModules/ags/default.nix
+    inputs.ags.homeManagerModules.default
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -42,6 +44,7 @@
     gimp
 
     python3
+    vscode
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

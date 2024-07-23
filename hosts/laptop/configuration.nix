@@ -140,6 +140,7 @@
     users = {
       "ethanp" = import ./home.nix;
     };
+    backupFileExtension = "backup";
   };
 
   # Install hyprland.
@@ -174,6 +175,10 @@
     nh
     nix-output-monitor
     nvd
+
+    ags
+    bun
+    libdbusmenu-gtk3
 
     tree
     wget
