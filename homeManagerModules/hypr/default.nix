@@ -16,6 +16,11 @@
   xdg.configFile."hypr/hyprlock.conf".source = ../../dotfiles/hypr/hyprlock.conf;
 
   # ------------------------------------
+  # Hypridle
+  # ------------------------------------
+  xdg.configFile."hypr/hypridle.conf".source = ../../dotfiles/hypr/hypridle.conf;
+
+  # ------------------------------------
   # Hyprland
   # ------------------------------------
   # Alternativ storage for hyprland config file.
