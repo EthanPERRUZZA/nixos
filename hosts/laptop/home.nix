@@ -32,22 +32,31 @@
     brightnessctl
 
     google-chrome
+
     beeper # messagerie
     discord
-    neovim
+
     pdfarranger
     kdePackages.gwenview
-    kdePackages.kdenlive
+
     super-productivity
+
+    kdePackages.kdenlive
     inkscape
     gimp
 
+    neovim
     python3
     vscode
     lunarvim
     lazygit
     ripgrep
     fd
+
+    jetbrains.rust-rover
+
+    jetbrains.rider
+    jetbrains.pycharm-professional
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
