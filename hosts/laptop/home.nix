@@ -9,6 +9,8 @@
     inputs.ags.homeManagerModules.default
   ];
 
+  xdg.configFile."hypr/hyprlock.conf".source = ../../dotfiles/hypr/hyprlock.conf;
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "ethanp";
