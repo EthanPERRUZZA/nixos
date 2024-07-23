@@ -99,20 +99,21 @@
     nvidiaBusId = "PCI:1:0:0";
   };
 
-  specialisation = {
-    gaming.configuration = {
+  # Gaming Specialization
+  # specialisation = 
+  #   gaming.configuration = {
 
-      hardware.nvidia = {
-        prime.sync.enable = lib.mkForce true;
-        prime.offload = {
-          enable = lib.mkForce false;
-          enableOffloadCmd = lib.mkForce false;
-        };
-      };
+  #     hardware.nvidia = {
+  #       prime.sync.enable = lib.mkForce true;
+  #       prime.offload = {
+  #         enable = lib.mkForce false;
+  #         enableOffloadCmd = lib.mkForce false;
+  #       };
+  #     };
 
-      environment.etc."specialisation".text = "gaming";
-    };
-  };
+  #     environment.etc."specialisation".text = "gaming";
+  #   };
+  # };
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
