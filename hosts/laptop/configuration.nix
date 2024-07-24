@@ -192,6 +192,7 @@
     curl
     unzip
     zip
+    btop
 
     tldr
     bat
