@@ -282,3 +282,16 @@ tooltip {
   border-radius: 5px;
   background: @bg_color;
 }
+
+/** 
+* ######################
+* #        Tray        #
+* ######################
+*/
+
+#tray {
+  margin: 0 2px;
+  padding: 0 7px;
+  border-radius: 10px;
+  background: @bg_color;
+}

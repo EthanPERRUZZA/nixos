@@ -6,6 +6,7 @@
 }:
 {
   home.packages = with pkgs; [
+    waybar
     hyprlock
     hypridle
   ];
@@ -88,6 +89,7 @@
     exec-once = [
       "ags -c /etc/nixos/homeManagerModules/ags/config.js >& /tmp/ags.log &"
       "hypridle &"
+      "waybar -c /etc/nixos/dotfiles/waybar/config.jsonc -s /etc/nixos/dotfiles/waybar/style.css &"
     ];
 
     misc = {

@@ -17,6 +17,7 @@
     ],
     "modules-right": [
         "mpd",
+        "tray",
         "idle_inhibitor",
         "pulseaudio",
         "network",
@@ -28,7 +29,6 @@
         "sway/language",
         "power-profiles-daemon",
         "battery",
-        "tray",
         "custom/power"
     ],
 
@@ -214,6 +214,6 @@
     "custom/power": {
         "format" : "⏻ ",
         "tooltip": false,
-        "on-click": "~/.config/waybar/power_menu.sh", // Menu file in resources folder
+        "on-click": "/etc/nixos/dotfiles/waybar/power_menu.sh", // Menu file in resources folder
     }
 }
