@@ -9,12 +9,18 @@
   font-size: 16px;
 }
 
-window {
-  margin-top: 10px;
-}
-
 window#waybar {
   background-color: transparent;
+}
+
+.modules-right {
+  margin-top: 3px;
+}
+.modules-center {
+  margin-top: 3px;
+}
+.modules-left {
+  margin-top: 3px;
 }
 
 /** 
@@ -82,5 +88,190 @@ window#waybar {
 #clock {
   padding: 0 0.5em;
   border-radius: 0.5em;
+  background: @bg_color;
+}
+
+/** 
+* ######################
+* #   Idle Inhibitor   #
+* ######################
+*/
+
+#idle_inhibitor {
+  padding: 0 16px 0 8px;
+  margin-right: 4px;
+  border-radius: 8px;
+  background: @bg_color;
+}
+
+/*
+#idle_inhibitor.activated {
+  background: rgba(144, 238, 144, 0.3);
+}
+*/
+
+#idle_inhibitor.deactivated {
+  color: #444;
+}
+
+/** 
+* ######################
+* #        Audio       #
+* ######################
+*/
+
+#pulseaudio {
+  margin-right: 2px;
+  padding: 0 8px;
+  border-radius: 5px;
+  background: @bg_color;
+}
+
+#pulseaudio.muted {
+  color: #444;
+}
+
+/** 
+* ######################
+* #       Network      #
+* ######################
+*/
+
+#network {
+  margin-right: 2px;
+  padding: 0 8px;
+  border-radius: 5px;
+  background: @bg_color;
+}
+
+/** 
+* ######################
+* #    Power Profil    #
+* ######################
+*/
+
+#power-profiles-daemon {
+  padding: 0 16px 0 8px;
+  margin-right: 6px;
+  border-radius: 8px;
+  background: @bg_color;
+}
+
+#power-profiles-daemon.performance {
+  color: #f53c3c;
+}
+
+#power-profiles-daemon.balanced {
+  color: #2980b9;
+}
+
+#power-profiles-daemon.power-saver {
+  color: #2ecc71;
+}
+
+/** 
+* ######################
+* #         CPU        #
+* ######################
+*/
+
+#cpu {
+  margin-right: 2px;
+  padding: 0 8px;
+  border-radius: 5px;
+  background: @bg_color;
+}
+
+
+/** 
+* ######################
+* #       Memory       #
+* ######################
+*/
+
+#memory {
+  margin-right: 2px;
+  padding: 0 8px;
+  border-radius: 5px;
+  background: @bg_color;
+}
+
+
+/** 
+* ######################
+* #    Temperature     #
+* ######################
+*/
+
+#temperature {
+  margin-right: 2px;
+  padding: 0 8px;
+  border-radius: 5px;
+  background: @bg_color;
+}
+
+#temperature.critical {
+    background-color: #eb4d4b;
+}
+
+/** 
+* ######################
+* #     Backlight      #
+* ######################
+*/
+
+#backlight {
+  margin-right: 2px;
+  padding: 0 8px;
+  border-radius: 5px;
+  background: @bg_color;
+}
+
+/** 
+* ######################
+* #      Battery       #
+* ######################
+*/
+
+#battery {
+  margin-right: 2px;
+  padding: 0 8px;
+  border-radius: 5px;
+  background: @bg_color;
+}
+
+#battery.charging, #battery.plugged {
+  color: #26A65B;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/** 
+* ######################
+* #      Battery       #
+* ######################
+*/
+
+#custom-power {
+  color: #8B0000;
+  margin-right: 2px;
+  padding: 0 8px;
+  border-radius: 5px;
   background: @bg_color;
 }
