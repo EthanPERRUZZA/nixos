@@ -26,6 +26,7 @@
   # ------------------------------------
   # Alternativ storage for hyprland config file.
   #xdg.configFile."hypr/hyprland.conf".source = "./hypr/hyprland.conf";
+  xdg.configFile."hypr/monitors.conf".source = ../../dotfiles/hypr/monitors.conf;
   # Hyprland
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.settings = {
