@@ -9,6 +9,11 @@
     waybar
     hyprlock
     hypridle
+
+    grim
+    slurp
+    wl-clipboard
+    grimblast
   ];
 
   # ------------------------------------
@@ -44,6 +49,9 @@
         "ALT, Space, exec, pkill $menu || $menu --show drun"
         "$mod, V, togglefloating,"
 
+        ", Print, exec, grimblast copy area"
+        "$mod, Print, exec, grimblast copysave area"
+
 	# Move focus with mainMod + arrow keys
 	"$mod, left, movefocus, l"
         "$mod, H, movefocus, l"
@@ -57,7 +65,6 @@
 	# Example special workspace (scratchpad)
         "$mod, S, togglespecialworkspace, magic"
         "$mod SHIFT, S, movetoworkspacesilent, special:magic"
-        #", Print, exec, grimblast copy area"
       ]
       ++ (
         # workspaces
