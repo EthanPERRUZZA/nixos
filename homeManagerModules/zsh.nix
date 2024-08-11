@@ -23,7 +23,10 @@
 
       h = "history";
 
+      c = "clear";
+
       prolo = "cd ~/Documents/Prologin";
+      acdc = "cd ~/Documents/ACDC";
     };
 
     history = {
@@ -31,14 +34,8 @@
       path = "${config.xdg.dataHome}/zsh/history";
     };
 
-    zplug = {
-      enable = true;
-      plugins = [
-        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
-      ];
-    };
-
     initExtra = ''
+source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 source /etc/nixos/dotfiles/p10k.zsh
     '';
   };
