@@ -34,6 +34,7 @@
     google-chrome
 
     beeper # messagerie
+    element-desktop
     discord
 
     pdfarranger
