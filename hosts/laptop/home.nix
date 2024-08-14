@@ -40,6 +40,7 @@
     kdePackages.gwenview
 
     super-productivity
+    todoist-electron
 
     kdePackages.kdenlive
     inkscape

@@ -123,9 +123,11 @@
   programs.gamemode.enable = true;
 
   # Virtualisation
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "ethanp" ];
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  # virtualisation.virtualbox.host.enable = true;
+  # users.extraGroups.vboxusers.members = [ "ethanp" ];
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
+  # virtualisation.virtualbox.guest.enable = true;
+  # virtualisation.virtualbox.guest.draganddrop = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -204,6 +206,8 @@
 
     alacritty
     vim
+
+    xdg-utils
   ];
 
   environment.shells = with pkgs; [ zsh ];
