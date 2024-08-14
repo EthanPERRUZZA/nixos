@@ -40,7 +40,10 @@
     pdfarranger
     kdePackages.gwenview
 
-    super-productivity
+    bottles
+
+    ktorrent
+
     todoist-electron
 
     kdePackages.kdenlive
