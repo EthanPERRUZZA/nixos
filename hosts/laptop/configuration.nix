@@ -129,6 +129,8 @@
   # virtualisation.virtualbox.guest.enable = true;
   # virtualisation.virtualbox.guest.draganddrop = true;
 
+  virtualisation.docker.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -136,7 +138,7 @@
   users.users.ethanp = {
     isNormalUser = true;
     description = "Ethan Perruzza";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     #  thunderbird
     ];
