@@ -3,6 +3,7 @@
 {
   imports = [
     ./../../homeManagerModules/default.nix
+    ./../../homeManagerModules/git.nix
     ./../../homeManagerModules/zsh.nix
     ./../../homeManagerModules/hypr/default.nix
     ./../../homeManagerModules/ags/default.nix
@@ -57,11 +58,6 @@
     lazygit
     ripgrep
     fd
-
-    jetbrains.rust-rover
-
-    jetbrains.rider
-    jetbrains.pycharm-professional
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
