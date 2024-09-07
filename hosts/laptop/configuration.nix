@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, lib, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -85,8 +85,8 @@
   };
 
   hardware.graphics.enable = true;
-
   services.xserver.videoDrivers = ["nvidia"];
+  hardware.nvidia.open = true;
   hardware.nvidia.modesetting.enable = true;
   # Nvidia specialisation activating or not card at all time
   hardware.nvidia.prime = {
@@ -101,22 +101,6 @@
     # dedicated
     nvidiaBusId = "PCI:1:0:0";
   };
-
-  # Gaming Specialization
-  # specialisation = 
-  #   gaming.configuration = {
-
-  #     hardware.nvidia = {
-  #       prime.sync.enable = lib.mkForce true;
-  #       prime.offload = {
-  #         enable = lib.mkForce false;
-  #         enableOffloadCmd = lib.mkForce false;
-  #       };
-  #     };
-
-  #     environment.etc."specialisation".text = "gaming";
-  #   };
-  # };
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
@@ -180,6 +164,8 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  programs.gnupg.agent.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -205,6 +191,7 @@
     bat
 
     git
+    pinentry-all
 
     alacritty
     vim
