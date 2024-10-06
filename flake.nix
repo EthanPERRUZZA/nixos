@@ -30,6 +30,16 @@
           modules = [
             ./hosts/laptop/configuration.nix
             inputs.self.outputs.nixosModules.default
+          ];
+        };
+
+        laptopGaming = inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./hosts/laptopGaming/configuration.nix
+            inputs.self.outputs.nixosModules.default
             inputs.stylix.nixosModules.stylix
           ];
         };
@@ -45,6 +55,17 @@
           };
           modules = [
             ./hosts/laptop/home.nix
+            inputs.self.outputs.homeManagerModules.default
+          ];
+        };
+
+        "ethanp@laptopGaming" =  inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./hosts/laptopGaming/home.nix
             inputs.self.outputs.homeManagerModules.default
           ];
         };

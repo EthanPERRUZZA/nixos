@@ -1,134 +1,82 @@
 # Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../nixosModules/stylix.nix
       inputs.home-manager.nixosModules.default
     ];
-  
-  # Bootloader.
+
+  nixpkgs.config.allowUnfree = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.initrd.luks.devices.swap.device = "/dev/nvme0n1p3";
-  swapDevices = [{device = "/dev/nvme0n1p3";}];
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_10;
 
   networking.hostName = "laptop"; # Define your hostname.
+  # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Set your time zone.
+  time.timeZone = "Europe/Paris";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Paris";
-#
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-    LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    LC_MONETARY = "fr_FR.UTF-8";
-    LC_NAME = "fr_FR.UTF-8";
-    LC_NUMERIC = "fr_FR.UTF-8";
-    LC_PAPER = "fr_FR.UTF-8";
-    LC_TELEPHONE = "fr_FR.UTF-8";
-    LC_TIME = "fr_FR.UTF-8";
+  console = {
+    useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services = {
+    xserver = {
+      # Required for DE to launch.
+      enable = true;
+      displayManager = {
+      	gdm = {
+      		enable = true;
+      		wayland = true;
+      	};
+      };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "altgr-intl";
+      # Enable Desktop Environment.
+      desktopManager.gnome.enable = true;
+      # Configure keymap in X11.
+      xkb.layout = "us";
+      xkb.variant = "altgr-intl";
+      # Exclude default X11 packages I don't want.
+      excludePackages = with pkgs; [ xterm ];
+    };
   };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable bluetooth
-  hardware.bluetooth.enable = true;
-
-  # Enable sound with pipewire.
+  # Enable sound.
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia.open = true;
-  hardware.nvidia.modesetting.enable = true;
-  # Nvidia specialisation activating or not card at all time
-  hardware.nvidia.prime = {
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
-
-    # integrated
-    intelBusId = "PCI:0:2:0";
-    
-    # dedicated
-    nvidiaBusId = "PCI:1:0:0";
-  };
-
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
-  programs.gamemode.enable = true;
-
-  # Virtualisation
-  # virtualisation.virtualbox.host.enable = true;
-  # users.extraGroups.vboxusers.members = [ "ethanp" ];
-  # virtualisation.virtualbox.host.enableExtensionPack = true;
-  # virtualisation.virtualbox.guest.enable = true;
-  # virtualisation.virtualbox.guest.draganddrop = true;
-
-  virtualisation.docker.enable = true;
+  services.pipewire.enable = true;
+  hardware.bluetooth.enable = true;
+  hardware.enableAllFirmware = true;
+  services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ethanp = {
-    isNormalUser = true;
-    description = "Ethan Perruzza";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
-  };
-
-  users.defaultUserShell = pkgs.zsh;
+     isNormalUser = true;
+     extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
+   };
 
   home-manager = {
     # also pass inputs to home-manager modules
@@ -139,73 +87,25 @@
     backupFileExtension = "backup";
   };
 
-  # Install hyprland.
-  programs.hyprland = {
-    # Install the packages from nixpkgs
-    enable = true;
-    # Whether to enable XWayland
-    xwayland.enable = true;
-    # Activate Packages
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-  };
-
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  # Apply zsh.
-  programs.zsh = {
-    enable = true;
-    ohMyZsh = {
-       enable = true;
-       theme = "robbyrussell";
-    };
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  programs.gnupg.agent.enable = true;
+  virtualisation.docker.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    home-manager
-    nh
-    nix-output-monitor
-    nvd
-
-    nwg-displays
-
-    ags
-    bun
-    libdbusmenu-gtk3
-
-    tree
-    wget
-    curl
-    unzip
-    zip
-    btop
-
-    tldr
-    bat
-
-    git
-    pinentry-all
-
-    alacritty
-    vim
-
-    xdg-utils
+     home-manager
+     nh
+     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+     alacritty
+     firefox
+     htop
+     tree
+     curl
+     brightnessctl
+     networkmanagerapplet
+     git
   ];
 
-  environment.shells = with pkgs; [ zsh ];
-  
-  environment.sessionVariables = {
-    FLAKE = "/etc/nixos/";
-    NIXOS_OZONE_WL = "1";
-    QT_QPA_PLATFORM = "wayland";
-  };
+  services.fwupd.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -225,13 +125,31 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix.
+  # system.copySystemConfiguration = true;
+
+  # This option defines the first version of NixOS you have installed on this particular machine,
+  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
+  #
+  # Most users should NEVER change this value after the initial install, for any reason,
+  # even if you've upgraded your system to a new NixOS release.
+  #
+  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
+  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
+  # to actually do that.
+  #
+  # This value being lower than the current NixOS release does NOT mean your system is
+  # out of date, out of support, or vulnerable.
+  #
+  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
+  # and migrated your data accordingly.
+  #
+  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.05"; # Did you read the comment?
 
 }
+

@@ -1,10 +1,13 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
     ./../../homeManagerModules/default.nix
     ./../../homeManagerModules/git.nix
     ./../../homeManagerModules/zsh.nix
+    ./../../homeManagerModules/hypr/default.nix
+    ./../../homeManagerModules/ags/default.nix
+    inputs.ags.homeManagerModules.default
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -26,14 +29,14 @@
   # environment.
   home.packages = with pkgs; [
 
-    #wofi
+    wofi
     brightnessctl
 
     google-chrome
 
     beeper # messagerie
     element-desktop
-    vesktop
+    discord
 
     pdfarranger
     kdePackages.gwenview
