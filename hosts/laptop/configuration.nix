@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../nixosModules/sway/default.nix
+      ../../nixosModules/kde/default.nix
       inputs.home-manager.nixosModules.default
     ];
 
@@ -17,7 +19,11 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_10;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_11;
+  #hardware.tuxedo-rs = {
+  #  enable = true;
+  #  tailor-gui.enable = true;
+  #};
 
   networking.hostName = "laptop"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -42,15 +48,9 @@
     xserver = {
       # Required for DE to launch.
       enable = true;
-      displayManager = {
-      	gdm = {
-      		enable = true;
-      		wayland = true;
-      	};
-      };
 
       # Enable Desktop Environment.
-      desktopManager.gnome.enable = true;
+      # desktopManager.gnome.enable = true;
       # Configure keymap in X11.
       xkb.layout = "us";
       xkb.variant = "altgr-intl";
