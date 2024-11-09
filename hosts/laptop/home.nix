@@ -21,10 +21,16 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
+  xdg.configFile."hypr/hyprlock.conf".source = ../../dotfiles/hypr/hyprlock.conf;
+
   nixpkgs.config.allowUnfree = true;
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    hyprlock
+    gtk-session-lock
+
+    btop
 
     #wofi
     brightnessctl
@@ -33,7 +39,8 @@
 
     beeper # messagerie
     element-desktop
-    vesktop
+    discord
+    slack
 
     pdfarranger
     kdePackages.gwenview
@@ -43,24 +50,59 @@
     ktorrent
 
     todoist-electron
+    notion-app-enhanced
 
     kdePackages.kdenlive
     inkscape
     gimp
 
+    qgis
+
     neovim
     python3
-    vscode
     lunarvim
     lazygit
     ripgrep
     fd
 
+    bat
+
+    tldr
+
+    postman
+
+    jetbrains.datagrip
+
+    libreoffice-qt
+
+    spotify
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    # (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+
+    (vscode-with-extensions.override {
+    vscodeExtensions = with vscode-extensions; [
+      bbenoist.nix
+      ms-python.python
+      ms-azuretools.vscode-docker
+      rust-lang.rust-analyzer
+      tamasfe.even-better-toml
+      eamodio.gitlens
+      vscode-extensions.ms-toolsai.jupyter
+      ms-vsliveshare.vsliveshare
+      esbenp.prettier-vscode
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "remote-ssh-edit";
+        publisher = "ms-vscode-remote";
+        version = "0.47.2";
+        sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
+      }
+    ];
+  })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your

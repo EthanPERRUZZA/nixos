@@ -38,7 +38,15 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ALL = "en_US.UTF-8";
+      LC_MONETARY = "fr_FR.UTF-8";
+      LC_TIME = "fr_FR.UTF-8";
+    };
+  };
+
   console = {
     useXkbConfig = true; # use xkbOptions in tty.
   };
@@ -49,8 +57,11 @@
       # Required for DE to launch.
       enable = true;
 
-      # Enable Desktop Environment.
-      # desktopManager.gnome.enable = true;
+      videoDrivers = [ "displaylink" "modesetting" ];
+      displayManager.sessionCommands = ''
+        ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 1 0
+      '';
+
       # Configure keymap in X11.
       xkb.layout = "us";
       xkb.variant = "altgr-intl";
@@ -63,8 +74,8 @@
   services.printing.enable = true;
 
   # Enable sound.
-  hardware.pulseaudio.enable = false;
-  services.pipewire.enable = true;
+  hardware.pulseaudio.enable = true;
+  services.pipewire.enable = false;
   hardware.bluetooth.enable = true;
   hardware.enableAllFirmware = true;
   services.blueman.enable = true;
@@ -103,7 +114,18 @@
      brightnessctl
      networkmanagerapplet
      git
+     zip
+     ripgrep
+     vpnc-scripts
   ];
+
+  programs.zsh = {
+    enable = true;
+    ohMyZsh = {
+       enable = true;
+       theme = "robbyrussell";
+    };
+  };
 
   services.fwupd.enable = true;
 

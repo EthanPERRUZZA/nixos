@@ -9,6 +9,8 @@
     extraConfig = {
       core.editor = "vim";
       safe.directory = "/etc/nixos";
+      push.autoSetupRemote = true;
+      init.defaultBranch = "main";
     };
   };
 

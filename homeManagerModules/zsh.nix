@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  #xdg.configHome.".bashrc".source = ../../dotfiles/bashrc;
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -25,6 +27,8 @@
 
       c = "clear";
 
+      d = "cd ~/Documents/";
+      dw = "cd ~/Downloads/";
       prolo = "cd ~/Documents/Prologin";
       acdc = "cd ~/Documents/ACDC";
     };
