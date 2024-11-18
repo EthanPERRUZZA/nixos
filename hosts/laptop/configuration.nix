@@ -20,10 +20,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_11;
-  #hardware.tuxedo-rs = {
-  #  enable = true;
-  #  tailor-gui.enable = true;
-  #};
+  hardware.tuxedo-drivers.enable = true;
+  hardware.tuxedo-rs = {
+    enable = true;
+    tailor-gui.enable = true;
+  };
 
   networking.hostName = "laptop"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -115,9 +116,12 @@
      networkmanagerapplet
      git
      zip
+     unzip
      ripgrep
      vpnc-scripts
   ];
+  environment.shells = with pkgs; [ zsh ];
+  users.defaultUserShell = pkgs.zsh;
 
   programs.zsh = {
     enable = true;

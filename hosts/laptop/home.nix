@@ -27,13 +27,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    hyprlock
-    gtk-session-lock
-
     btop
-
-    #wofi
-    brightnessctl
 
     google-chrome
 
@@ -48,9 +42,6 @@
     bottles
 
     ktorrent
-
-    todoist-electron
-    notion-app-enhanced
 
     kdePackages.kdenlive
     inkscape

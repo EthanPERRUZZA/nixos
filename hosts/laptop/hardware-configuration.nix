@@ -14,7 +14,7 @@
   boot.extraModulePackages = [ ];
 
   boot.initrd.luks.devices."cryptroot" = {
-    device = "/dev/disk/by-uuid/9a78154e-f843-45b6-83b8-3f5bd7d39e54";
+    device = "/dev/disk/by-uuid/617adbec-f77e-4b1a-9487-a78d0ab7f5c1";
     preLVM = true;
   };
 
@@ -24,7 +24,7 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F300-E9D1";
+    { label = "LAPTOPBOOT";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -41,3 +41,4 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
+
