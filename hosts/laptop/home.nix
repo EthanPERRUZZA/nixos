@@ -36,6 +36,8 @@
     discord
     slack
 
+    thunderbird
+
     pdfarranger
     kdePackages.gwenview
 
@@ -58,6 +60,8 @@
 
     bat
 
+    zoxide
+
     tldr
 
     postman
@@ -68,11 +72,14 @@
 
     spotify
 
+    obs-studio
+    vlc
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    # # (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
     (vscode-with-extensions.override {
     vscodeExtensions = with vscode-extensions; [
@@ -92,8 +99,8 @@
         version = "0.47.2";
         sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
       }
-    ];
-  })
+      ];
+    })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -101,6 +108,8 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    nix-direnv
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -138,9 +147,9 @@
     # EDITOR = "emacs";
   };
 
+  programs.direnv.enable = true;
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  programs.direnv.enable = true;
 
 }

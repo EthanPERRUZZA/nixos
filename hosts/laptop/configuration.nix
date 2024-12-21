@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../../nixosModules/sway/default.nix
       ../../nixosModules/kde/default.nix
+      ../../nixosModules/tuxedo/charging-profile.nix
       inputs.home-manager.nixosModules.default
     ];
 
@@ -42,8 +43,14 @@
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
-      LC_ALL = "en_US.UTF-8";
+      LC_ADDRESS = "fr_FR.UTF-8";
+      LC_IDENTIFICATION = "fr_FR.UTF-8";
+      LC_MEASUREMENT = "fr_FR.UTF-8";
       LC_MONETARY = "fr_FR.UTF-8";
+      LC_NAME = "fr_FR.UTF-8";
+      LC_NUMERIC = "fr_FR.UTF-8";
+      LC_PAPER = "fr_FR.UTF-8";
+      LC_TELEPHONE = "fr_FR.UTF-8";
       LC_TIME = "fr_FR.UTF-8";
     };
   };
@@ -99,6 +106,10 @@
     backupFileExtension = "backup";
   };
 
+  security.pki.certificateFiles = [
+    ../../certs/sncf.fr.pem
+  ];
+
   virtualisation.docker.enable = true;
 
   # List packages installed in system profile. To search, run:
@@ -130,6 +141,10 @@
        theme = "robbyrussell";
     };
   };
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.fantasque-sans-mono
+  ];
 
   services.fwupd.enable = true;
 
