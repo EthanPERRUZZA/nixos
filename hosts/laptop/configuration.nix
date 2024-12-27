@@ -8,9 +8,9 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../nixosModules/sway/default.nix
       ../../nixosModules/kde/default.nix
       ../../nixosModules/tuxedo/charging-profile.nix
+      ../../nixosModules/nordvpn/nordvpn.nix
       inputs.home-manager.nixosModules.default
     ];
 
@@ -20,7 +20,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_11;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
   hardware.tuxedo-drivers.enable = true;
   hardware.tuxedo-rs = {
     enable = true;
@@ -94,7 +94,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ethanp = {
      isNormalUser = true;
-     extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
+     extraGroups = [ "wheel" "docker" "networkmanager" "nordvpn" ]; # Enable ‘sudo’ for the user.
    };
 
   home-manager = {
@@ -111,13 +111,15 @@
   ];
 
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
      home-manager
      nh
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+     vim
      alacritty
      firefox
      htop
@@ -130,6 +132,7 @@
      unzip
      ripgrep
      vpnc-scripts
+     linuxPackages.yt6801
   ];
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;

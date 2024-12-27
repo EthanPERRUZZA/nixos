@@ -48,6 +48,7 @@
     kdePackages.kdenlive
     inkscape
     gimp
+    darktable
 
     qgis
 
