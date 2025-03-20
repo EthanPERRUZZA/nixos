@@ -43,7 +43,7 @@
 
     bottles
 
-    ktorrent
+    kdePackages.ktorrent
 
     kdePackages.kdenlive
     inkscape
@@ -52,7 +52,6 @@
 
     qgis
 
-    neovim
     python3
     lunarvim
     lazygit
@@ -67,8 +66,6 @@
 
     postman
 
-    jetbrains.datagrip
-
     libreoffice-qt
 
     spotify
@@ -76,32 +73,42 @@
     obs-studio
     vlc
 
+    anki
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
     # # (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    mongodb-ce
+    mongodb-tools
+    mongosh
 
-    (vscode-with-extensions.override {
-    vscodeExtensions = with vscode-extensions; [
-      bbenoist.nix
-      ms-python.python
-      ms-azuretools.vscode-docker
-      rust-lang.rust-analyzer
-      tamasfe.even-better-toml
-      eamodio.gitlens
-      vscode-extensions.ms-toolsai.jupyter
-      ms-vsliveshare.vsliveshare
-      esbenp.prettier-vscode
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        name = "remote-ssh-edit";
-        publisher = "ms-vscode-remote";
-        version = "0.47.2";
-        sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
-      }
-      ];
-    })
+    vscode
+    # (vscode-with-extensions.override {
+    # vscodeExtensions = with vscode-extensions; [
+    #   bbenoist.nix
+    #   ms-python.python
+    #   ms-python.debugpy
+    #   ms-azuretools.vscode-docker
+    #   rust-lang.rust-analyzer
+    #   tamasfe.even-better-toml
+    #   eamodio.gitlens
+    #   vscode-extensions.ms-toolsai.jupyter
+    #   ms-vsliveshare.vsliveshare
+    #   esbenp.prettier-vscode
+    #   github.copilot
+    #   github.copilot-chat
+    #   mechatroner.rainbow-csv
+    # ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+    #   {
+    #     name = "remote-ssh-edit";
+    #     publisher = "ms-vscode-remote";
+    #     version = "0.47.2";
+    #     sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
+    #   }
+    #   ];
+    # })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your

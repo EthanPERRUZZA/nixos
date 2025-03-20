@@ -9,8 +9,10 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../nixosModules/kde/default.nix
+      ../../nixosModules/yubikey/default.nix
       ../../nixosModules/tuxedo/charging-profile.nix
       ../../nixosModules/nordvpn/nordvpn.nix
+      ../../nixosModules/tcinfo.nix
       inputs.home-manager.nixosModules.default
     ];
 
@@ -20,7 +22,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_13;
   hardware.tuxedo-drivers.enable = true;
   hardware.tuxedo-rs = {
     enable = true;
@@ -82,11 +84,22 @@
   services.printing.enable = true;
 
   # Enable sound.
-  hardware.pulseaudio.enable = true;
-  services.pipewire.enable = false;
+  services.pulseaudio.enable = false;
+  services.pipewire.enable = true;
   hardware.bluetooth.enable = true;
   hardware.enableAllFirmware = true;
   services.blueman.enable = true;
+  
+  # Portal for screen sharing support
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+    };
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -94,7 +107,13 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ethanp = {
      isNormalUser = true;
-     extraGroups = [ "wheel" "docker" "networkmanager" "nordvpn" ]; # Enable ‘sudo’ for the user.
+     extraGroups = [ 
+       "wheel"
+       "docker"
+       "networkmanager"
+       "nordvpn" 
+       "dialout"
+     ];
    };
 
   home-manager = {
@@ -111,8 +130,17 @@
   ];
 
   virtualisation.docker.enable = true;
+  virtualisation.vmware.host.enable = true;
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
+  
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["ethanp"];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+  virtualisation.spiceUSBRedirection.enable = true;
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -121,7 +149,8 @@
      nh
      vim
      alacritty
-     firefox
+     # firefox
+     (wrapFirefox (firefox-unwrapped.override { pipewireSupport = true;}) {})
      htop
      tree
      curl
@@ -132,7 +161,10 @@
      unzip
      ripgrep
      vpnc-scripts
-     linuxPackages.yt6801
+     xclip
+     wl-clipboard
+     man-pages
+     man-pages-posix
   ];
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
@@ -145,11 +177,20 @@
     };
   };
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.fantasque-sans-mono
-  ];
+  fonts = {
+    fontDir.enable = true;
+    packages = with pkgs; [
+      nerd-fonts.fantasque-sans-mono
+    ];
+  };
 
   services.fwupd.enable = true;
+
+  documentation = {
+    enable = true;
+    man.enable = true;
+    dev.enable = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
