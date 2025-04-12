@@ -131,8 +131,6 @@
 
   virtualisation.docker.enable = true;
   virtualisation.vmware.host.enable = true;
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
   
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = ["ethanp"];

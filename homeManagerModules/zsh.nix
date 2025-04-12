@@ -27,10 +27,10 @@
 
       c = "clear";
 
+      vim= "lvim";
+
       d = "cd ~/Documents/";
       dw = "cd ~/Downloads/";
-      prolo = "cd ~/Documents/Prologin";
-      acdc = "cd ~/Documents/ACDC";
     };
 
     history = {

@@ -21,8 +21,6 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  xdg.configFile."hypr/hyprlock.conf".source = ../../dotfiles/hypr/hyprlock.conf;
-
   nixpkgs.config.allowUnfree = true;
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -50,13 +48,13 @@
     gimp
     darktable
 
-    qgis
-
     python3
     lunarvim
     lazygit
     ripgrep
     fd
+
+    texliveFull
 
     bat
 
@@ -73,16 +71,11 @@
     obs-studio
     vlc
 
-    anki
-
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
     # # (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-    mongodb-ce
-    mongodb-tools
-    mongosh
 
     vscode
     # (vscode-with-extensions.override {
@@ -152,7 +145,7 @@
   #  /etc/profiles/per-user/ethanp/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "vim";
   };
 
   programs.direnv.enable = true;
