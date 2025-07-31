@@ -18,6 +18,11 @@
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -28,6 +33,7 @@
     enable = true;
     tailor-gui.enable = true;
   };
+  boot.tmp.cleanOnBoot = true;
 
   networking.hostName = "laptop"; # Define your hostname.
   # Pick only one of the below networking options.
