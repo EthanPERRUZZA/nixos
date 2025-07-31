@@ -46,7 +46,7 @@
     kdePackages.kdenlive
     inkscape
     gimp
-    darktable
+    # darktable
 
     python3
     lunarvim

@@ -11,7 +11,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_14.yt6801 ];
+  boot.extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_15.yt6801 ];
 
   boot.initrd.luks.devices."cryptroot" = {
     device = "/dev/disk/by-uuid/617adbec-f77e-4b1a-9487-a78d0ab7f5c1";

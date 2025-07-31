@@ -11,7 +11,7 @@
       ../../nixosModules/kde/default.nix
       ../../nixosModules/yubikey/default.nix
       ../../nixosModules/tuxedo/charging-profile.nix
-      ../../nixosModules/nordvpn/nordvpn.nix
+      # ../../nixosModules/nordvpn/nordvpn.nix
       # ../../nixosModules/tcinfo.nix
       inputs.home-manager.nixosModules.default
     ];
@@ -22,7 +22,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_14;
+  boot.kernelPackages = pkgs.linuxPackages_6_15;
   hardware.tuxedo-drivers.enable = true;
   hardware.tuxedo-rs = {
     enable = true;

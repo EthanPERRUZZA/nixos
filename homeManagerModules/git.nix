@@ -8,6 +8,12 @@
     userName = "Ethan Perruzza";
     userEmail = "ethan.perruzza@gmail.com";
 
+    signing = {
+      key = "10746D84004889C78BE4147B896A511FE431AE32";
+      signer = "gpg2";
+      signByDefault = true;
+    };
+
     extraConfig = {
       core = {
         editor = "vim";
