@@ -38,9 +38,11 @@
       path = "${config.xdg.dataHome}/zsh/history";
     };
 
-    initExtra = ''
+    initContent = ''
 source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 source /etc/nixos/dotfiles/p10k.zsh
+
+eval "$(zoxide init zsh)"
     '';
   };
 }

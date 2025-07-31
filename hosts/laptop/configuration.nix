@@ -12,7 +12,7 @@
       ../../nixosModules/yubikey/default.nix
       ../../nixosModules/tuxedo/charging-profile.nix
       ../../nixosModules/nordvpn/nordvpn.nix
-      ../../nixosModules/tcinfo.nix
+      # ../../nixosModules/tcinfo.nix
       inputs.home-manager.nixosModules.default
     ];
 
@@ -22,7 +22,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_13;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_14;
   hardware.tuxedo-drivers.enable = true;
   hardware.tuxedo-rs = {
     enable = true;
@@ -126,11 +126,10 @@
   };
 
   security.pki.certificateFiles = [
-    ../../certs/sncf.fr.pem
+    # ../../certs/sncf.fr.pem
   ];
 
   virtualisation.docker.enable = true;
-  virtualisation.vmware.host.enable = true;
   
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = ["ethanp"];
@@ -139,6 +138,10 @@
   virtualisation.spiceUSBRedirection.enable = true;
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
+
+  programs.steam.enable = true;
+
+  # services.udev.packages = [ pkgs.usb-blaster-udev-rules ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -204,7 +207,10 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 
+    1880 # node-red
+    1883 # mosquitto
+  ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

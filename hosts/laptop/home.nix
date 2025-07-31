@@ -34,14 +34,14 @@
     discord
     slack
 
-    thunderbird
-
     pdfarranger
     kdePackages.gwenview
 
     bottles
 
     kdePackages.ktorrent
+
+    kdePackages.partitionmanager
 
     kdePackages.kdenlive
     inkscape
@@ -53,6 +53,8 @@
     lazygit
     ripgrep
     fd
+
+    obsidian
 
     texliveFull
 
@@ -70,6 +72,8 @@
 
     obs-studio
     vlc
+
+    ncdu
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
