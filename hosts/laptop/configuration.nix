@@ -27,7 +27,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_6_15;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   hardware.tuxedo-drivers.enable = true;
   hardware.tuxedo-rs = {
     enable = true;
@@ -117,7 +117,7 @@
        "wheel"
        "docker"
        "networkmanager"
-       "nordvpn" 
+       # "nordvpn" 
        "dialout"
      ];
    };
@@ -129,6 +129,12 @@
       "ethanp" = import ./home.nix;
     };
     backupFileExtension = "backup";
+  };
+
+  # VPN
+  services.mullvad-vpn = {
+    enable = true;
+    package = pkgs.mullvad-vpn;
   };
 
   security.pki.certificateFiles = [
@@ -146,6 +152,8 @@
   services.spice-vdagentd.enable = true;
 
   programs.steam.enable = true;
+
+  programs.kdeconnect.enable = true;
 
   # services.udev.packages = [ pkgs.usb-blaster-udev-rules ];
 

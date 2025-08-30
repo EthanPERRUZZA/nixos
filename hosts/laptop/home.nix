@@ -53,6 +53,8 @@
     lazygit
     ripgrep
     fd
+    
+    jq
 
     obsidian
 
