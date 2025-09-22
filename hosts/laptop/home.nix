@@ -49,10 +49,11 @@
     # darktable
 
     python3
-    lunarvim
+    ruff
+
+    helix
+
     lazygit
-    ripgrep
-    fd
     
     jq
 

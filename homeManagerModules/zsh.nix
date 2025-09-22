@@ -27,8 +27,6 @@
 
       c = "clear";
 
-      vim= "lvim";
-
       d = "cd ~/Documents/";
       dw = "cd ~/Downloads/";
     };

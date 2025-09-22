@@ -180,6 +180,8 @@
      wl-clipboard
      man-pages
      man-pages-posix
+     nixfmt
+     wget
   ];
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
