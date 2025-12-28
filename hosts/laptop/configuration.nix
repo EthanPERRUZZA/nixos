@@ -87,7 +87,10 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.gutenprint pkgs.foomatic-filters pkgs.hplip ];
+  };
 
   # Enable sound.
   services.pulseaudio.enable = false;
@@ -141,17 +144,20 @@
     # ../../certs/sncf.fr.pem
   ];
 
+  programs.nix-ld.enable = true;
+
   virtualisation.docker.enable = true;
   
-  programs.virt-manager.enable = true;
-  users.groups.libvirtd.members = ["ethanp"];
-  virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
-  virtualisation.spiceUSBRedirection.enable = true;
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
+  # programs.virt-manager.enable = true;
+  # users.groups.libvirtd.members = ["ethanp"];
+  # virtualisation.libvirtd.enable = true;
+  # virtualisation.libvirtd.qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+  # virtualisation.spiceUSBRedirection.enable = true;
+  # services.qemuGuest.enable = true;
+  # services.spice-vdagentd.enable = true;
 
   programs.steam.enable = true;
+  hardware.steam-hardware.enable = true;
 
   programs.kdeconnect.enable = true;
 
@@ -224,6 +230,7 @@
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 
+    # 631 # cups
     1880 # node-red
     1883 # mosquitto
   ];

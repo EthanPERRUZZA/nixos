@@ -41,7 +41,8 @@
 
     kdePackages.ktorrent
 
-    kdePackages.partitionmanager
+    # kdePackages.partitionmanager
+    gnome-disk-utility
 
     kdePackages.kdenlive
     inkscape
@@ -49,7 +50,7 @@
     # darktable
 
     python3
-    ruff
+    # ruff
 
     helix
 
@@ -67,9 +68,7 @@
 
     tldr
 
-    postman
-
-    libreoffice-qt
+    onlyoffice-desktopeditors
 
     spotify
 
@@ -152,7 +151,7 @@
   #  /etc/profiles/per-user/ethanp/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "vim";
+    EDITOR = "hx";
   };
 
   programs.direnv.enable = true;

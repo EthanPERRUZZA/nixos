@@ -1,20 +1,18 @@
 { config, pkgs, inputs, ... }:
 
 {
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
+  
   programs.git = {
     enable = true;
-    delta.enable = true;
-
-    userName = "Ethan Perruzza";
-    userEmail = "ethan.perruzza@gmail.com";
-
-    signing = {
-      key = "10746D84004889C78BE4147B896A511FE431AE32";
-      signer = "gpg2";
-      signByDefault = true;
-    };
-
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Ethan Perruzza";
+        email = "ethan.perruzza@gmail.com";
+      };
       core = {
         editor = "vim";
       };
@@ -26,6 +24,12 @@
         dark = true;
         line-numbers = true;
       };
+    };
+
+    signing = {
+      key = "10746D84004889C78BE4147B896A511FE431AE32";
+      signer = "gpg2";
+      signByDefault = true;
     };
 
     includes = [
@@ -42,6 +46,14 @@
         contents = {
           user = {
             email = "ethan.perruzza@epita.fr";
+          };
+        };
+      }
+      {
+        condition = "gitdir:~/Documents/Prologin/";
+        contents = {
+          user = {
+            email = "ethan.perruzza@prologin.org";
           };
         };
       }

@@ -29,6 +29,8 @@
 
       d = "cd ~/Documents/";
       dw = "cd ~/Downloads/";
+
+      cd= "z";
     };
 
     history = {
